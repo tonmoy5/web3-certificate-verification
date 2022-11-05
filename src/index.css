@@ -19,6 +19,12 @@ body {
   scroll-behavior: smooth;
 }
 
+input{
+  background: transparent !important;
+  margin: 10px 0px !important;
+  border: 1px solid rgba(137, 43, 226, 0.378);
+}
+
 .gradient-bg-welcome {
   background-color:#0f0e13;
   background-image: 
@@ -34,7 +40,7 @@ body {
     radial-gradient(at 50% 100%, hsla(225,39%,25%,1) 0, transparent 50%);
 }
 
-.gradient-bg-transactions {
+.gradient-bg-main {
   background-color: #0f0e13;
   background-image: 
     radial-gradient(at 0% 100%, hsla(253,16%,7%,1) 0, transparent 50%), 
