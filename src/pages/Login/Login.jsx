@@ -1,16 +1,31 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { redirect } from 'react-router-dom';
+import { CertificateContext } from '../../context/CertificateContext';
 import { admin } from '../../utils/constants'
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false);
   const [wrong, setWrong] = useState(false);
+
+  const { isAdmin, setIsAdmin } = useContext(CertificateContext);
+  console.log({ "isAdmin": isAdmin });
+
+  const Redirect = async () => {
+    if (isAdmin) {
+      return redirect("/");
+    }
+  }
+
+  useEffect(() => {
+    Redirect()
+  }, [isAdmin])
 
   const handelLogin = () => {
     if (admin.email == email) {
       if (admin.password == password) {
-        localStorage.setItem('myCat', 'Tom');
+        localStorage.setItem('isAdmin', true);
         setIsAdmin(true);
+        Redirect()
       }
       else {
         setWrong(true);
@@ -21,15 +36,7 @@ const Login = () => {
       setWrong(true);
       alert("Wrong credentials");
     }
-
   }
-
-  useEffect(() => {
-    if (isAdmin) {
-      localStorage.getItem("isAdmin");
-      window.history.pushState({}, undefined, "/admin");
-    }
-  }, [isAdmin]);
 
 
   return (

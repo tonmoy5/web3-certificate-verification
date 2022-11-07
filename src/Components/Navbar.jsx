@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import { CertificateContext } from "../context/CertificateContext";
 
 const NavBarItem = ({ title, classprops }) => (
   <Link to={`/${title}`}>
@@ -11,6 +12,12 @@ const NavBarItem = ({ title, classprops }) => (
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = React.useState(false);
+  const { isAdmin, setIsAdmin } = useContext(CertificateContext);
+
+  const logout = () => {
+    localStorage.removeItem("isAdmin")
+    setIsAdmin(false);
+  }
 
   return (
     <nav className="w-full flex md:justify-center justify-between items-center p-4">
@@ -20,12 +27,25 @@ const Navbar = () => {
         </Link>
       </div>
       <ul className="text-white md:flex hidden list-none flex-row justify-between items-center flex-initial">
-        {["Home", "Search", "Admin", "Edit"].map((item, index) => (
+        {["home", "search", "admin", "edit"].map((item, index) => (
           <NavBarItem key={item + index} title={item} />
         ))}
-        <li className="bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]">
-          Login
-        </li>
+        {
+          !isAdmin ? (
+            <Link to='/login'>
+              <li className="bg-[#2952e3] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]">
+                Login
+              </li>
+            </Link>
+          ) : (
+            <li
+              onClick={logout}
+              className="bg-[#e35429] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#bd3c25]">
+              Logout
+            </li>
+          )
+
+        }
       </ul>
       <div className="flex relative">
         {!toggleMenu && (
@@ -40,7 +60,7 @@ const Navbar = () => {
             flex flex-col justify-start items-end rounded-md blue-glassmorphism text-white animate-slide-in"
           >
             <li className="text-xl w-full my-2"><AiOutlineClose onClick={() => setToggleMenu(false)} /></li>
-            {["Home", "Search", "Admin", "Edit"].map(
+            {["home", "search", "admin", "edit"].map(
               (item, index) => <NavBarItem key={item + index} title={item} classprops="my-2 text-lg" />,
             )}
           </ul>
