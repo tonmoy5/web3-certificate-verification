@@ -13,11 +13,13 @@ const getEthereumContract = () => {
   const signer = provider.getSigner();
   const certificateContract = new ethers.Contract(contractAddress, contractABI, signer);
 
-  console.log({
-    provider,
-    signer,
-    certificateContract
-  })
+  // console.log({
+  //   provider,
+  //   signer,
+  //   certificateContract
+  // })
+
+  return certificateContract;
 }
 
 
@@ -27,6 +29,7 @@ export const CertificateProvider = ({ children }) => {
   const [currentAccount, setCurrentAccount] = useState("");
   const [formData, setFormData] = useState({ candidate_name: '', academi: '', course_name: '', passing_year: '', gred: '' });
 
+  // To get Data From form
   const handelChange = (e, name) => {
     setFormData((prevState) => ({ ...prevState, [name]: e.target.value }));
   }
@@ -65,8 +68,9 @@ export const CertificateProvider = ({ children }) => {
   const addNewCertificate = async () => {
     try {
       if (!ethereum) return alert("Please install Metamusk!!!");
+      const { candidate_name, academi, course_name, passing_year, gred } = formData;
+      const certificateContract = getEthereumContract();
 
-      // Get certificate Data from the Form
     } catch (err) {
       console.log(err);
       throw new Error("No ethereum object found");
@@ -78,7 +82,7 @@ export const CertificateProvider = ({ children }) => {
   }, []);
 
   return (
-    <CertificateContext.Provider value={{ connectWallet, currentAccount, formData, setFormData, handelChange, isAdmin, setIsAdmin }}>
+    <CertificateContext.Provider value={{ connectWallet, currentAccount, formData, setFormData, handelChange, isAdmin, setIsAdmin, addNewCertificate }}>
       {children}
     </CertificateContext.Provider>
   )

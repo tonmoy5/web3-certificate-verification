@@ -21,8 +21,8 @@ const Login = () => {
   }, [isAdmin])
 
   const handelLogin = () => {
-    if (admin.email == email) {
-      if (admin.password == password) {
+    if (admin.email === email) {
+      if (admin.password === password) {
         localStorage.setItem('isAdmin', true);
         setIsAdmin(true);
         Redirect()
