@@ -41,10 +41,20 @@ input{
 }
 
 .gradient-bg-main {
-  background-color: #0f0e13;
-  background-image: 
-    radial-gradient(at 0% 100%, hsla(253,16%,7%,1) 0, transparent 50%), 
-    radial-gradient(at 50% 0%, hsla(225,39%,25%,1) 0, transparent 50%);
+  background: #0f0e13;
+  background-image:-moz-radial-gradient(ellipse at 50% 50%, rgba(0, 255, 255, 0.575) 0%, rgba(35, 35, 178, 0.46) 36%, rgba(15, 14, 19, 1) 53%, rgba(15, 14, 19, 1) 100%);
+
+  /* safari 5.1+,chrome 10+ */
+  background:-webkit-radial-gradient(ellipse at 50% 50%, rgba(0, 255, 255, 0.512) 0%, rgba(35, 35, 178, 0.496) 36%, rgba(15, 14, 19, 1) 53%, rgba(15, 14, 19, 1) 100%);
+
+  /* opera 11.10+ */
+  background-image:-o-radial-gradient(ellipse at 50% 50%, rgba(0, 255, 255, 0.43) 0%, rgba(35, 35, 178, 0.496) 36%, rgba(15, 14, 19, 1) 53%, rgba(15, 14, 19, 1) 100%);
+
+  /* ie 10+ */
+  background-image:-ms-radial-gradient(ellipse at 50% 50%, rgba(0, 255, 255, 0.436) 0%, rgba(35, 35, 178, 0.474) 36%, rgba(15, 14, 19, 1) 53%, rgba(15, 14, 19, 1) 100%);
+
+  /* global 92%+ browsers support */
+  background-image:radial-gradient(ellipse at 50% 50%, rgba(0, 255, 255, 0.411) 0%, rgba(35, 35, 178, 0.471) 36%, rgba(15, 14, 19, 1) 53%, rgba(15, 14, 19, 1) 100%);
 }
 
 .gradient-bg-footer {
