@@ -28,6 +28,7 @@ export const CertificateProvider = ({ children }) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [currentAccount, setCurrentAccount] = useState("");
   const [formData, setFormData] = useState({ _candidate_name: '', _fathers_name: '', _academi: '', _course_name: '', _passing_year: '', _grade: '', _edited: false });
+  const [editformData, seteditFormData] = useState({ _old: '', _candidate_name: '', _fathers_name: '', _academi: '', _course_name: '', _passing_year: '', _grade: '', _edited: false });
   const [isLoading, setIsLoading] = useState(false);
   const [certificateCount, setCertificateCount] = useState(localStorage.getItem('certificateCount'));
   const [allCertificates, setAllCertificates] = useState([]);
@@ -36,6 +37,11 @@ export const CertificateProvider = ({ children }) => {
   // To get Data From form
   const handelChange = (e, name) => {
     setFormData((prevState) => ({ ...prevState, [name]: e.target.value }));
+  }
+
+  // To get Data From form
+  const handelEditChange = (e, name) => {
+    seteditFormData((prevState) => ({ ...prevState, [name]: e.target.value }));
   }
 
   const checkIfWalletConnected = async () => {
@@ -120,13 +126,32 @@ export const CertificateProvider = ({ children }) => {
     }
   }
 
+  // Edit Certificate
+  const editcertificate = async () => {
+    try {
+      if (!ethereum) return alert("Please install Metamusk!!!");
+      const { _old, _candidate_name, _fathers_name, _academi, _course_name, _passing_year, _grade } = editformData;
+      const certificateContract = getEthereumContract();
+      const certificateHash = await certificateContract.editCertificate(_old, _candidate_name, _fathers_name, _academi, _course_name, _passing_year, _grade);
+      setIsLoading(true)
+      console.log(`Loading - ${certificateHash.hash}`);
+      await certificateHash.wait();
+      setIsLoading(false)
+      console.log(`Success - ${certificateHash.hash}`);
+      alert("Sucessfull added certificate: " + certificateHash.hash);
+    } catch (err) {
+      console.log(err);
+      throw new Error("No ethereum object found");
+    }
+  }
+
   useEffect(() => {
     checkIfWalletConnected();
     getAllCertificates();
   }, []);
 
   return (
-    <CertificateContext.Provider value={{ connectWallet, currentAccount, formData, setFormData, handelChange, isAdmin, setIsAdmin, addNewCertificate, isLoading, allCertificates, setSearch, getCertificate }}>
+    <CertificateContext.Provider value={{ connectWallet, currentAccount, formData, setFormData, handelChange, isAdmin, setIsAdmin, addNewCertificate, isLoading, allCertificates, setSearch, getCertificate, handelEditChange, editcertificate, editformData }}>
       {children}
     </CertificateContext.Provider>
   )
