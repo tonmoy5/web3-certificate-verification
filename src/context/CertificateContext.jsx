@@ -95,6 +95,26 @@ export const CertificateProvider = ({ children }) => {
     }
   }
 
+  // Edit Certificate
+  const editcertificate = async () => {
+    try {
+      if (!ethereum) return alert("Please install Metamusk!!!");
+      const { _old, _candidate_name, _fathers_name, _academi, _course_name, _passing_year, _grade } = editformData;
+      const certificateContract = getEthereumContract();
+      const certificateHash = await certificateContract.editCertificate(_old, _candidate_name, _fathers_name, _academi, _course_name, _passing_year, _grade);
+      setIsLoading(true)
+      console.log(`Loading - ${certificateHash.hash}`);
+      await certificateHash.wait();
+      setIsLoading(false)
+      console.log(`Success - ${certificateHash.hash}`);
+      console.log(certificateHash)
+      alert("Sucessfull added certificate: " + certificateHash.hash);
+    } catch (err) {
+      console.log(err);
+      throw new Error("No ethereum object found");
+    }
+  }
+
   // Get all certificates
   const getAllCertificates = async () => {
     try {
@@ -126,24 +146,6 @@ export const CertificateProvider = ({ children }) => {
     }
   }
 
-  // Edit Certificate
-  const editcertificate = async () => {
-    try {
-      if (!ethereum) return alert("Please install Metamusk!!!");
-      const { _old, _candidate_name, _fathers_name, _academi, _course_name, _passing_year, _grade } = editformData;
-      const certificateContract = getEthereumContract();
-      const certificateHash = await certificateContract.editCertificate(_old, _candidate_name, _fathers_name, _academi, _course_name, _passing_year, _grade);
-      setIsLoading(true)
-      console.log(`Loading - ${certificateHash.hash}`);
-      await certificateHash.wait();
-      setIsLoading(false)
-      console.log(`Success - ${certificateHash.hash}`);
-      alert("Sucessfull added certificate: " + certificateHash.hash);
-    } catch (err) {
-      console.log(err);
-      throw new Error("No ethereum object found");
-    }
-  }
 
   useEffect(() => {
     checkIfWalletConnected();
