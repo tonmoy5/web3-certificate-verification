@@ -10,7 +10,7 @@ const SearchBar = () => {
     const Rcertificate = await getCertificate();
     setCertificate(Rcertificate)
   }
-  console.log(allCertificates)
+  // console.log(allCertificates)
   return (
     <>
       <div className="flex flex-col items-center gap-3">
