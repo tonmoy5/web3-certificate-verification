@@ -23,6 +23,12 @@
         {
           "indexed": false,
           "internalType": "string",
+          "name": "fathers_name",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
           "name": "academi",
           "type": "string"
         },
@@ -43,9 +49,34 @@
           "internalType": "string",
           "name": "gred",
           "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "edited",
+          "type": "bool"
         }
       ],
       "name": "createCertificate",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "oldAdd",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "newAdd",
+          "type": "bytes32"
+        }
+      ],
+      "name": "editEvent",
       "type": "event"
     },
     {
@@ -58,6 +89,11 @@
         {
           "internalType": "string",
           "name": "_candidate_name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_fathers_name",
           "type": "string"
         },
         {
@@ -93,29 +129,15 @@
       "type": "function"
     },
     {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "bytes32",
-          "name": "oldAdd",
-          "type": "bytes32"
-        },
-        {
-          "indexed": false,
-          "internalType": "bytes32",
-          "name": "newAdd",
-          "type": "bytes32"
-        }
-      ],
-      "name": "editEvent",
-      "type": "event"
-    },
-    {
       "inputs": [
         {
           "internalType": "string",
           "name": "_candidate_name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_fathers_name",
           "type": "string"
         },
         {
@@ -137,6 +159,11 @@
           "internalType": "string",
           "name": "_grade",
           "type": "string"
+        },
+        {
+          "internalType": "bool",
+          "name": "_edited",
+          "type": "bool"
         }
       ],
       "name": "generateCertificate",
@@ -168,6 +195,11 @@
             },
             {
               "internalType": "string",
+              "name": "fathers_name",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
               "name": "academi",
               "type": "string"
             },
@@ -185,6 +217,11 @@
               "internalType": "string",
               "name": "gred",
               "type": "string"
+            },
+            {
+              "internalType": "bool",
+              "name": "edited",
+              "type": "bool"
             }
           ],
           "internalType": "struct Certification.Certificate[]",
@@ -232,6 +269,11 @@
             },
             {
               "internalType": "string",
+              "name": "fathers_name",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
               "name": "academi",
               "type": "string"
             },
@@ -249,6 +291,11 @@
               "internalType": "string",
               "name": "gred",
               "type": "string"
+            },
+            {
+              "internalType": "bool",
+              "name": "edited",
+              "type": "bool"
             }
           ],
           "internalType": "struct Certification.Certificate",

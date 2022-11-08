@@ -27,7 +27,7 @@ export const CertificateProvider = ({ children }) => {
 
   const [isAdmin, setIsAdmin] = useState(false);
   const [currentAccount, setCurrentAccount] = useState("");
-  const [formData, setFormData] = useState({ _candidate_name: '', _academi: '', _course_name: '', _passing_year: '', _grade: '' });
+  const [formData, setFormData] = useState({ _candidate_name: '', _fathers_name: '', _academi: '', _course_name: '', _passing_year: '', _grade: '', _edited: false });
   const [isLoading, setIsLoading] = useState(false);
   const [certificateCount, setCertificateCount] = useState(localStorage.getItem('certificateCount'));
   const [allCertificates, setAllCertificates] = useState([]);
@@ -72,9 +72,9 @@ export const CertificateProvider = ({ children }) => {
   const addNewCertificate = async () => {
     try {
       if (!ethereum) return alert("Please install Metamusk!!!");
-      const { _candidate_name, _academi, _course_name, _passing_year, _grade } = formData;
+      const { _candidate_name, _fathers_name, _academi, _course_name, _passing_year, _grade, _edited } = formData;
       const certificateContract = getEthereumContract();
-      const certificateHash = await certificateContract.generateCertificate(_candidate_name, _academi, _course_name, _passing_year, _grade);
+      const certificateHash = await certificateContract.generateCertificate(_candidate_name, _fathers_name, _academi, _course_name, _passing_year, _grade, _edited);
       setIsLoading(true)
       console.log(`Loading - ${certificateHash.hash}`);
       await certificateHash.wait();

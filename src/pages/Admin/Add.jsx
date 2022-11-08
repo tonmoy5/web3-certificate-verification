@@ -6,7 +6,7 @@ const Add = () => {
   const { handelChange, formData, addNewCertificate, isLoading } = useContext(CertificateContext)
 
   const addCertificate = (e) => {
-    const { _candidate_name, _academi, _course_name, _passing_year, _grade } = formData;
+    const { _candidate_name, _fathers_name, _academi, _course_name, _passing_year, _grade, _edited } = formData;
     // console.log(candidate_name, fathers_name, academi, course_name, passing_year, gred)
     e.preventDefault();
     const certificate = addNewCertificate();
@@ -21,9 +21,9 @@ const Add = () => {
         <input className='md:w-[500px] w-[300px] p-4 rounded text-white '
           type="text" name='_candidate_name' onChange={(e) => handelChange(e, e.target.name)} placeholder='Name Of The Student' />
 
-        {/* <label htmlFor="" className='block text-white'>Father's Name:</label>
+        <label htmlFor="" className='block text-white'>Father's Name:</label>
         <input className='md:w-[500px] w-[300px] p-4 rounded text-white '
-          type="text" name='fathers_name' onChange={(e) => handelChange(e, e.target.name)} placeholder='Students fathes name' /> */}
+          type="text" name='_fathers_name' onChange={(e) => handelChange(e, e.target.name)} placeholder='Students fathes name' />
 
         <label htmlFor="" className='block text-white'>University:</label>
         <input className='md:w-[500px] w-[300px] p-4 rounded text-white '
