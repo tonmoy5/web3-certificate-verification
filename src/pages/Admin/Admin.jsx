@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Table from '../../Components/Table'
 
 const Admin = () => {
   return (
-    <div className='w-full min-h-screen gradient-bg-main flex items-center justify-center py-20'>
+    <div className='w-full min-h-screen gradient-bg-main flex flex-col items-center justify-center py-20'>
       <div className="md:p-10 px-4 py-8 rounded-xl blue-glassmorphism shadow-xl">
         <div className="w-full flex flex-col gap-5 items-center justify-center">
           <Link to="/add" className=''>
@@ -26,6 +27,7 @@ const Admin = () => {
           </Link>
         </div>
       </div>
+      <Table />
     </div>
   )
 }

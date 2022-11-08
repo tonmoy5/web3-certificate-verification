@@ -6,6 +6,7 @@ import Edit from "./pages/Admin/Edit";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login"
 import ServiceCard from './Components/ServiceCard'
+import Search from "./pages/Admin/Search";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/add" element={<Add />} />
         <Route path="/edit" element={<Edit />} />
       </Routes>

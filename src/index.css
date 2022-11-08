@@ -92,6 +92,20 @@ input{
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+table{
+  max-width: 90vw !important;
+  border-radius: 10px;
+}
+th,thead,td, tr, table{
+  border:1px solid #2be2bac5;
+}
+tr:hover td,tr{
+  border: none;
+}
+td{
+  max-width: 120px !important;
+}
+
 
 @tailwind base;
 @tailwind components;

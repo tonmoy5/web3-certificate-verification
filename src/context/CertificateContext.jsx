@@ -153,7 +153,7 @@ export const CertificateProvider = ({ children }) => {
   }, []);
 
   return (
-    <CertificateContext.Provider value={{ connectWallet, currentAccount, formData, setFormData, handelChange, isAdmin, setIsAdmin, addNewCertificate, isLoading, allCertificates, setSearch, getCertificate, handelEditChange, editcertificate, editformData }}>
+    <CertificateContext.Provider value={{ connectWallet, currentAccount, formData, setFormData, handelChange, isAdmin, setIsAdmin, addNewCertificate, isLoading, allCertificates, setSearch, getCertificate, handelEditChange, editcertificate, editformData, getAllCertificates }}>
       {children}
     </CertificateContext.Provider>
   )
