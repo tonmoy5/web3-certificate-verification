@@ -33,7 +33,7 @@ const Welcome = () => {
                 You are sucessfull <br /> Connected with CertAuth
               </h1>
               <p className="text-left mt-5 text-white font-light md:w-9/12 w-11/12 text-base">
-                By: {currentAccount}
+                By: <span className='text-teal-300'>{currentAccount}</span>
               </p>
             </>
           )}

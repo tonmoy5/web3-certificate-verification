@@ -30,6 +30,8 @@ export const CertificateProvider = ({ children }) => {
   const [formData, setFormData] = useState({ candidate_name: '', academi: '', course_name: '', passing_year: '', gred: '' });
   const [isLoading, setIsLoading] = useState(false);
   const [certificateCount, setCertificateCount] = useState(localStorage.getItem('certificateCount'));
+  const [allCertificates, setAllCertificates] = useState([]);
+  const [search, setSearch] = useState("");
 
   // To get Data From form
   const handelChange = (e, name) => {
@@ -87,12 +89,40 @@ export const CertificateProvider = ({ children }) => {
     }
   }
 
+  // Get all certificates
+  const getAllCertificates = async () => {
+    try {
+      if (!ethereum) return alert("Please install Metamusk!!!");
+      const certificateContract = getEthereumContract();
+      const certificates = await certificateContract.getAllData();
+      setAllCertificates(certificates);
+    } catch (err) {
+      console.log(err);
+      throw new Error("No ethereum object found");
+    }
+  }
+
+  // Get certificate Using Hash
+  const getCertificate = async () => {
+    try {
+      if (!ethereum) return alert("Please install Metamusk!!!");
+      const certificateContract = getEthereumContract();
+      const certificate = await certificateContract.getData(search)
+      return certificate
+    } catch (err) {
+      console.log(err);
+      alert("Does not exist")
+      throw new Error("No ethereum object found");
+    }
+  }
+
   useEffect(() => {
     checkIfWalletConnected();
+    getAllCertificates();
   }, []);
 
   return (
-    <CertificateContext.Provider value={{ connectWallet, currentAccount, formData, setFormData, handelChange, isAdmin, setIsAdmin, addNewCertificate, isLoading }}>
+    <CertificateContext.Provider value={{ connectWallet, currentAccount, formData, setFormData, handelChange, isAdmin, setIsAdmin, addNewCertificate, isLoading, allCertificates, setSearch, getCertificate }}>
       {children}
     </CertificateContext.Provider>
   )
