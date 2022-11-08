@@ -27,7 +27,7 @@ export const CertificateProvider = ({ children }) => {
 
   const [isAdmin, setIsAdmin] = useState(false);
   const [currentAccount, setCurrentAccount] = useState("");
-  const [formData, setFormData] = useState({ candidate_name: '', academi: '', course_name: '', passing_year: '', gred: '' });
+  const [formData, setFormData] = useState({ _candidate_name: '', _academi: '', _course_name: '', _passing_year: '', _grade: '' });
   const [isLoading, setIsLoading] = useState(false);
   const [certificateCount, setCertificateCount] = useState(localStorage.getItem('certificateCount'));
   const [allCertificates, setAllCertificates] = useState([]);
@@ -72,9 +72,9 @@ export const CertificateProvider = ({ children }) => {
   const addNewCertificate = async () => {
     try {
       if (!ethereum) return alert("Please install Metamusk!!!");
-      const { candidate_name, academi, course_name, passing_year, gred } = formData;
+      const { _candidate_name, _academi, _course_name, _passing_year, _grade } = formData;
       const certificateContract = getEthereumContract();
-      const certificateHash = await certificateContract.generateCertificate(candidate_name, academi, course_name, passing_year, gred);
+      const certificateHash = await certificateContract.generateCertificate(_candidate_name, _academi, _course_name, _passing_year, _grade);
       setIsLoading(true)
       console.log(`Loading - ${certificateHash.hash}`);
       await certificateHash.wait();
@@ -106,12 +106,16 @@ export const CertificateProvider = ({ children }) => {
   const getCertificate = async () => {
     try {
       if (!ethereum) return alert("Please install Metamusk!!!");
+      if (!currentAccount) return alert("Please Connet Metamush First");
       const certificateContract = getEthereumContract();
-      const certificate = await certificateContract.getData(search)
+      setIsLoading(true)
+      const certificate = await certificateContract.getData(search);
+      setIsLoading(false)
       return certificate
     } catch (err) {
       console.log(err);
       alert("Does not exist")
+      setIsLoading(false)
       throw new Error("No ethereum object found");
     }
   }

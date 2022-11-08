@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { CertificateContext } from '../../context/CertificateContext'
 
 const Edit = () => {
+  const { handelChange } = useContext(CertificateContext);
   return (
     <div className='w-full min-h-screen gradient-bg-main flex items-center justify-center py-20'>
       <div className="md:p-10 px-4 py-8 rounded-xl blue-glassmorphism shadow-xl">
@@ -9,9 +11,13 @@ const Edit = () => {
         <input className='md:w-[500px] w-[300px] p-4 rounded text-white '
           type="text" name='candidate_name' placeholder='Enter The Hash Of Old Certificate' />
 
-        <label htmlFor="" className='block text-white'>Name:</label>
+        <label htmlFor="" className='block text-white'>Student's Name:</label>
         <input className='md:w-[500px] w-[300px] p-4 rounded text-white '
           type="text" name='candidate_name' placeholder='Name Of The Student' />
+
+        <label htmlFor="" className='block text-white'>Father's Name:</label>
+        <input className='md:w-[500px] w-[300px] p-4 rounded text-white '
+          type="text" name='fathers_name' onChange={handelChange} placeholder='Students fathes name' />
 
         <label htmlFor="" className='block text-white'>University:</label>
         <input className='md:w-[500px] w-[300px] p-4 rounded text-white '

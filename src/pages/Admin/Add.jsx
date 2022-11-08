@@ -6,35 +6,40 @@ const Add = () => {
   const { handelChange, formData, addNewCertificate, isLoading } = useContext(CertificateContext)
 
   const addCertificate = (e) => {
-    const { candidate_name, academi, course_name, passing_year, gred } = formData;
-    console.log(candidate_name, academi, course_name, passing_year, gred)
+    const { _candidate_name, _academi, _course_name, _passing_year, _grade } = formData;
+    // console.log(candidate_name, fathers_name, academi, course_name, passing_year, gred)
     e.preventDefault();
-    addNewCertificate();
+    const certificate = addNewCertificate();
+    console.log(certificate)
   }
 
   return (
     <div className='w-full min-h-screen gradient-bg-main flex items-center justify-center py-20'>
       <div className="md:p-10 px-4 py-8 rounded-xl blue-glassmorphism shadow-xl">
         <h1 className='text-white text-3xl mb-10 text-center' >Add New Certificate</h1>
-        <label htmlFor="" className='block text-white'>Name:</label>
+        <label htmlFor="" className='block text-white'>Student's Name:</label>
         <input className='md:w-[500px] w-[300px] p-4 rounded text-white '
-          type="text" name='candidate_name' onChange={handelChange} placeholder='Name Of The Student' />
+          type="text" name='_candidate_name' onChange={(e) => handelChange(e, e.target.name)} placeholder='Name Of The Student' />
+
+        {/* <label htmlFor="" className='block text-white'>Father's Name:</label>
+        <input className='md:w-[500px] w-[300px] p-4 rounded text-white '
+          type="text" name='fathers_name' onChange={(e) => handelChange(e, e.target.name)} placeholder='Students fathes name' /> */}
 
         <label htmlFor="" className='block text-white'>University:</label>
         <input className='md:w-[500px] w-[300px] p-4 rounded text-white '
-          type="text" name='academi' onChange={handelChange} placeholder='Name Of The Organaization' />
+          type="text" name='_academi' onChange={(e) => handelChange(e, e.target.name)} placeholder='Name Of The Organaization' />
 
         <label htmlFor="" className='block text-white'>Course Name:</label>
         <input className='md:w-[500px] w-[300px] p-4 rounded text-white '
-          type="text" name='course_name' onChange={handelChange} placeholder='Name Of The Course' />
+          type="text" name='_course_name' onChange={(e) => handelChange(e, e.target.name)} placeholder='Name Of The Course' />
 
         <label htmlFor="" className='block text-white'>Year Of Graduation:</label>
         <input className='md:w-[500px] w-[300px] p-4 rounded text-white '
-          type="text" name='passing_year' onChange={handelChange} placeholder='Graduation Year' />
+          type="text" name='_passing_year' onChange={(e) => handelChange(e, e.target.name)} placeholder='Graduation Year' />
 
         <label htmlFor="" className='block text-white'>Obtained Grade:</label>
         <input className='md:w-[500px] w-[300px] p-4 rounded text-white '
-          type="text" name='gred' onChange={handelChange} placeholder='Overall Grade Obtained By The Student' />
+          type="text" name='_grade' onChange={(e) => handelChange(e, e.target.name)} placeholder='Overall Grade Obtained By The Student' />
 
         {
           !isLoading ? (
