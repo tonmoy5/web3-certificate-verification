@@ -154,14 +154,30 @@ export const CertificateProvider = ({ children }) => {
     return console.log({ filteredArray, allCertificates })
   }
 
+  // Check If Exist On Edit chain
+  const checkIfExistOnEditChain = async () => {
+    let exist = false;
+    let address = search;
+    editedChain.map((item) => {
+      if (item.oldAdd == search) {
+        exist = true;
+        address = item.newAdd;
+      }
+    })
+    return address;
+  }
+
   // Get certificate Using Hash
   const getCertificate = async () => {
     try {
+      let newAdd = await checkIfExistOnEditChain();
+      // console.log(newAdd);
       if (!ethereum) return alert("Please install Metamusk!!!");
       if (!currentAccount) return alert("Please Connet Metamush First");
       const certificateContract = getEthereumContract();
       setIsLoading(true)
-      const certificate = await certificateContract.getData(search);
+      // const certificate = await certificateContract.getData(search);
+      const certificate = await certificateContract.getData(newAdd);
       setIsLoading(false)
       return certificate
     } catch (err) {
