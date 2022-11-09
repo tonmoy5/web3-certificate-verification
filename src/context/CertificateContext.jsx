@@ -146,10 +146,16 @@ export const CertificateProvider = ({ children }) => {
     }
   }
 
+  // Get Login Data
+  const getIsAdminData = () => {
+    setIsAdmin(localStorage.getItem("isAdmin"))
+  }
+
 
   useEffect(() => {
     checkIfWalletConnected();
     getAllCertificates();
+    getIsAdminData();
   }, []);
 
   return (
