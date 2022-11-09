@@ -32,6 +32,7 @@ export const CertificateProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [certificateCount, setCertificateCount] = useState(localStorage.getItem('certificateCount'));
   const [allCertificates, setAllCertificates] = useState([]);
+  const [editedChain, setEditedChain] = useState([]);
   const [search, setSearch] = useState("");
 
   // To get Data From form
@@ -134,12 +135,23 @@ export const CertificateProvider = ({ children }) => {
       if (!ethereum) return alert("Please install Metamusk!!!");
       const certificateContract = getEthereumContract();
       const editedChain = await certificateContract.getEditedChain();
-      return console.log(editedChain)
+      setEditedChain(editedChain);
     } catch (err) {
       console.log(err);
       throw new Error("No ethereum object found");
       return alert("Please Connect Metamusk")
     }
+  }
+
+  // Filter Edited certificates from allCertificates
+  const filterEditedCertificates = async () => {
+    const filteredArray = allCertificates.filter((el) => {
+      return editedChain.some((f) => {
+        return f.oldAdd !== el.certId;
+      });
+    });
+    setAllCertificates(filteredArray);
+    return console.log({ filteredArray, allCertificates })
   }
 
   // Get certificate Using Hash
@@ -173,8 +185,9 @@ export const CertificateProvider = ({ children }) => {
     getIsAdminData();
   }, []);
 
+
   return (
-    <CertificateContext.Provider value={{ connectWallet, currentAccount, formData, setFormData, handelChange, isAdmin, setIsAdmin, addNewCertificate, isLoading, allCertificates, setSearch, getCertificate, handelEditChange, editcertificate, editformData, getAllCertificates }}>
+    <CertificateContext.Provider value={{ connectWallet, currentAccount, formData, setFormData, handelChange, isAdmin, setIsAdmin, addNewCertificate, isLoading, allCertificates, setSearch, getCertificate, handelEditChange, editcertificate, editformData, getAllCertificates, filterEditedCertificates }}>
       {children}
     </CertificateContext.Provider>
   )

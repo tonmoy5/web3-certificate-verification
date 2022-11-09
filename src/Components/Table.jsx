@@ -1,14 +1,42 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { CertificateContext } from '../context/CertificateContext'
-import { shortenAddress } from '../utils/constants'
 
 const Table = () => {
-  const { getAllCertificates, allCertificates } = useContext(CertificateContext)
+  const { getAllCertificates, allCertificates, filterEditedCertificates } = useContext(CertificateContext)
+  const [toggle, setToggle] = useState(false)
+
   useEffect(() => {
     getAllCertificates();
   }, [])
+
+  const toggleEdit = () => {
+    if (toggle) {
+      getAllCertificates()
+    } else {
+      filterEditedCertificates()
+    }
+    setToggle(!toggle)
+  }
+
   return (
     <div className="md:p-10 px-4 py-8 rounded-xl blue-glassmorphism shadow-xl mt-10">
+      <div className="w-full flex justify-end mb-5">
+        {
+          !toggle ? (
+            <button
+              onClick={toggleEdit}
+              className="bg-[#2952e3] text-white hover:scale-110 py-2 px-7 rounded-full cursor-pointer hover:bg-[#2546bd]">
+              Filter Edited
+            </button>
+          ) : (
+            <button
+              onClick={toggleEdit}
+              className="bg-[#2952e3] text-white hover:scale-110 py-2 px-7 rounded-full cursor-pointer hover:bg-[#2546bd]">
+              Show All
+            </button>
+          )
+        }
+      </div>
       <table className='md:w-[60vw] w-[90vw]  p-2 text-white overflow-scroll'>
         <thead className=''>
           <tr>
