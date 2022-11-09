@@ -8,10 +8,10 @@ const Login = () => {
   const [wrong, setWrong] = useState(false);
 
   const { setIsAdmin } = useContext(CertificateContext);
+  const { currentAccount } = useContext(CertificateContext);
 
   const handelLogin = () => {
     const { ethereum } = window;
-    const { currentAccount } = useContext(CertificateContext);
     if (!ethereum) return alert("Please install Metamusk!!!");
     if (!currentAccount) return alert("Please Connect Metamusk!!!");
 
