@@ -10,6 +10,11 @@ const Login = () => {
   const { setIsAdmin } = useContext(CertificateContext);
 
   const handelLogin = () => {
+    const { ethereum } = window;
+    const { currentAccount } = useContext(CertificateContext);
+    if (!ethereum) return alert("Please install Metamusk!!!");
+    if (!currentAccount) return alert("Please Connect Metamusk!!!");
+
     if (admin.email === email) {
       if (admin.password === password) {
         localStorage.setItem('isAdmin', true);
