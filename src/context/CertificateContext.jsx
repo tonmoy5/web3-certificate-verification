@@ -128,6 +128,20 @@ export const CertificateProvider = ({ children }) => {
     }
   }
 
+  // Get Edit chain
+  const getEditedChain = async () => {
+    try {
+      if (!ethereum) return alert("Please install Metamusk!!!");
+      const certificateContract = getEthereumContract();
+      const editedChain = await certificateContract.getEditedChain();
+      return console.log(editedChain)
+    } catch (err) {
+      console.log(err);
+      throw new Error("No ethereum object found");
+      return alert("Please Connect Metamusk")
+    }
+  }
+
   // Get certificate Using Hash
   const getCertificate = async () => {
     try {
@@ -155,6 +169,7 @@ export const CertificateProvider = ({ children }) => {
   useEffect(() => {
     checkIfWalletConnected();
     getAllCertificates();
+    getEditedChain();
     getIsAdminData();
   }, []);
 
