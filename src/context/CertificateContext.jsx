@@ -145,13 +145,9 @@ export const CertificateProvider = ({ children }) => {
 
   // Filter Edited certificates from allCertificates
   const filterEditedCertificates = async () => {
-    const filteredArray = allCertificates.filter((el) => {
-      return editedChain.some((f) => {
-        return f.oldAdd !== el.certId;
-      });
-    });
+    const filteredArray = allCertificates.filter(array => editedChain.some(filter => filter.oldAdd !== array.certId));
     setAllCertificates(filteredArray);
-    return console.log({ filteredArray, allCertificates })
+    return console.log({ filteredArray, allCertificates, editedChain })
   }
 
   // Check If Exist On Edit chain
