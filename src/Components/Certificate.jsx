@@ -15,13 +15,13 @@ const Certificate = ({ props }) => {
             <p className="mt-10">Certificate Id: {shortenAddress(certificate.certId)}</p>
             {
               certificate.edited && (
-                <p className='text-[#e37729]'>This certificate has been edited</p>
+                <p className='text-[#e0420e]'>This certificate has been edited</p>
               )
             }
           </>
         ) : (
           <>
-            <h1 className='text-[#e0420e] text-3xl font-bold text-center'>Opps!!! THis Certificate Doesn't exist</h1>
+            <h1 className='text-[#762307] text-3xl font-bold text-center'>Opps!!! THis Certificate Doesn't exist</h1>
           </>
         )
       }
