@@ -2,7 +2,7 @@ import abi from './certificate.json'
 
 
 export const contractABI = abi.abi;
-export const contractAddress = '0x8a49903deA089Bd41B5BCbB0620b1704CAA56227'
+export const contractAddress = '0x06Fe24E493b0Bc32bF318bB8d145389d96588Ece'
 
 export const admin = {
   "email": "admin@example.com",
