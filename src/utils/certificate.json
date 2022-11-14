@@ -61,25 +61,6 @@
       "type": "event"
     },
     {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "bytes32",
-          "name": "oldAdd",
-          "type": "bytes32"
-        },
-        {
-          "indexed": false,
-          "internalType": "bytes32",
-          "name": "newAdd",
-          "type": "bytes32"
-        }
-      ],
-      "name": "editEvent",
-      "type": "event"
-    },
-    {
       "inputs": [
         {
           "internalType": "bytes32",
@@ -127,6 +108,25 @@
       ],
       "stateMutability": "nonpayable",
       "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "oldAdd",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "newAdd",
+          "type": "bytes32"
+        }
+      ],
+      "name": "editEvent",
+      "type": "event"
     },
     {
       "inputs": [

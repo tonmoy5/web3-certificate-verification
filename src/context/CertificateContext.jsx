@@ -90,6 +90,8 @@ export const CertificateProvider = ({ children }) => {
       const certificateCount = await certificateContract.getCertificateCount();
       setCertificateCount(certificateCount.toNumber());
       alert("Sucessfull added certificate: " + certificateHash.hash);
+      getAllCertificates()
+      getEditedChain()
     } catch (err) {
       console.log(err);
       throw new Error("No ethereum object found");
@@ -110,6 +112,8 @@ export const CertificateProvider = ({ children }) => {
       console.log(`Success - ${certificateHash.hash}`);
       console.log(certificateHash)
       alert("Sucessfull added certificate: " + certificateHash.hash);
+      getAllCertificates();
+      getEditedChain();
     } catch (err) {
       console.log(err);
       throw new Error("No ethereum object found");
