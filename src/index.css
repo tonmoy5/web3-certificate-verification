@@ -105,6 +105,9 @@ tr:hover td,tr{
 td{
   max-width: 120px !important;
 }
+.certificateBody{
+  line-height: 3rem !important;
+}
 
 
 @tailwind base;

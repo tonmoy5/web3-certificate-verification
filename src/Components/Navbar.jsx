@@ -23,8 +23,10 @@ const Navbar = () => {
     <nav className="w-full flex md:justify-center justify-between items-center p-4">
       <div className="md:flex-[0.5] flex-initial justify-center items-center">
         <Link to='/'>
-          <h1 className="text-white text-xl md:text-5xl">CertificateAuth</h1>
+          <h1 className="text-white text-3xl md:text-5xl">CertificateAuth</h1>
         </Link>
+        <p className="text-white hidden md:block lg:block">Fast and secure certificate authentication</p>
+        <p className="text-white text-small md:hidden lg:hidden">Authenticate you Certificate</p>
       </div>
       <ul className="text-white md:flex hidden list-none flex-row justify-between items-center flex-initial">
         {["home", "search", "admin", "edit"].map((item, index) => (
