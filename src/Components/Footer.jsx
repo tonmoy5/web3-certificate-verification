@@ -13,7 +13,7 @@ const Footer = () => {
 
         <a href="https://tonmoy.itstorm.us/" target='_blank'>
           <div className={`${CardStyle} flex flex-col items-center p-2 gap-2 border rounded-md hover:shadow-2xl hover:scale-110 transition-all developer-card  cursor-pointer`}>
-            <img src={me} alt="Tonmoy" className="h-40 w-40 rounded-full animate-bounce shadow-2xl" />
+            <img src={me} alt="Tonmoy" className="h-40 w-40 rounded-full shadow-2xl" />
             <h2 className="text-white text-center text-2xl">Md Tanzinul Kabir Tonmoy</h2>
             <h2 className="text-white text-center">Phone: 01889983314</h2>
             <h2 className="text-white text-center">Email: tonmoy52532@gmail.com</h2>
@@ -21,14 +21,14 @@ const Footer = () => {
         </a>
 
         <div className={`${CardStyle} flex flex-col items-center p-2 gap-2 border rounded-md hover:shadow-2xl hover:scale-110 transition-all developer-card `}>
-          <img src={shihab} alt="Tonmoy" className="h-40 w-40 rounded-full animate-bounce shadow-2xl" />
+          <img src={shihab} alt="Tonmoy" className="h-40 w-40 rounded-full shadow-2xl" />
           <h2 className="text-white text-center text-2xl">Saifur Rahman Shihab</h2>
           <h2 className="text-white text-center">Phone: 01995169630</h2>
           <h2 className="text-white text-center">Email: </h2>
         </div>
 
         <div className={`${CardStyle} flex flex-col items-center p-2 gap-2 border rounded-md hover:shadow-2xl hover:scale-110 transition-all developer-card `}>
-          <img src={dolon} alt="Tonmoy" className="h-40 w-40 rounded-full animate-bounce shadow-2xl" />
+          <img src={dolon} alt="Tonmoy" className="h-40 w-40 rounded-full shadow-2xl" />
           <h2 className="text-white text-center text-2xl">Riya Farhana Dolon</h2>
           <h2 className="text-white text-center">Phone: </h2>
           <h2 className="text-white text-center">Email: riyafarhana09@gmail.com</h2>
