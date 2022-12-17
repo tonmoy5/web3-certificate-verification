@@ -1,6 +1,6 @@
 import React from 'react'
 import dolon from '../images/dolon.jpg'
-import me from '../images/me.jpg'
+import me from '../images/me1.jpg'
 import shihab from '../images/shihab.jpg'
 
 const CardStyle = ""
